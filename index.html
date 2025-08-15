@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>PokéDex Avanzada</title>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4 shadow">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">PokéDex Avanzada ⚡</h1>
+    </div>
+  </header>
+
+  <!-- Layout principal -->
+  <div class="flex flex-col lg:flex-row container mx-auto px-4 py-6 gap-4">
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-1/4 space-y-6">
+      <!-- Búsqueda -->
+      <div>
+        <label for="search" class="block text-sm font-medium mb-1">Buscar por nombre:</label>
+        <input type="text" id="search" class="w-full px-3 py-2 border rounded" placeholder="Ej: pikachu" />
+      </div>
+
+      <!-- Tipos -->
+      <div>
+        <h3 class="text-sm font-semibold mb-2">Filtrar por tipo:</h3>
+        <div id="typeFilters" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Generación -->
+      <div>
+        <label for="generationSelect" class="block text-sm font-medium mb-1">Filtrar por generación:</label>
+        <select id="generationSelect" class="w-full px-3 py-2 border rounded">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <!-- Orden -->
+      <div>
+        <label for="sortSelect" class="block text-sm font-medium mb-1">Ordenar por:</label>
+        <select id="sortSelect" class="w-full px-3 py-2 border rounded">
+          <option value="id">ID</option>
+          <option value="name">Nombre</option>
+          <option value="height">Altura</option>
+          <option value="weight">Peso</option>
+        </select>
+      </div>
+
+      <!-- Limpiar filtros -->
+      <div>
+        <button id="resetFilters" class="bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">
+          Limpiar filtros
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="w-full lg:w-3/4">
+      <!-- Loading -->
+      <div id="loading" class="text-center py-6 hidden">
+        <div class="animate-spin h-8 w-8 mx-auto border-4 border-blue-400 border-t-transparent rounded-full"></div>
+        <p class="text-gray-500 mt-2">Cargando Pokémon...</p>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="mb-4">
+        <p class="text-sm text-gray-600">Mostrando <span id="totalCount">0</span> Pokémon</p>
+      </div>
+
+      <!-- Grid de tarjetas -->
+      <div id="pokemonGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+      <!-- Paginación -->
+      <div class="flex justify-center mt-6 space-x-4">
+        <button id="prevBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400">Anterior</button>
+        <span id="pageInfo" class="px-4 py-2 bg-white rounded shadow">Página 1</span>
+        <button id="nextBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Siguiente</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 py-10 mt-10">
+    <div class="text-center text-md text-gray-600">Desarrollado en el Taller Avanzado PokéDex</div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="pokemonModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 max-h-96 overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 id="modalTitle" class="text-2xl font-bold text-blue-600"></h2>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
