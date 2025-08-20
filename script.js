@@ -97,7 +97,7 @@ function setupFilters() {
   POKEMON_TYPES.forEach(type => {
     const btn = document.createElement('button');
     btn.textContent = capitalize(type);
-    btn.className = `px-3 py-1 rounded text-white text-xs font-semibold ${getTypeColor(type)} hover:opacity-80`;
+    btn.className = `min-w-[80px] text-center px-3 py-1 rounded text-white text-xs font-semibold ${getTypeColor(type)} hover:opacity-80`;
     btn.dataset.type = type;
     btn.addEventListener('click', () => {
       if (selectedTypes.has(type)) {
